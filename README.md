@@ -1,2 +1,2 @@
-# RockingClimbimgGoat
-A quadraped robot capable of walking, running, standing up and self-stabalizing.
+# RockingClimbingGoat
+A quadrupedal robot capable of walking, running, standing up and self-stabilizing.
