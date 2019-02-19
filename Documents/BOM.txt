@@ -1,1 +1,3 @@
 https://www.robotshop.com/en/smart-servo-controller-arduino.html
+https://www.waveshare.com/compute-module-io-board-plus.htm
+https://www.waveshare.com/compute-module-3.htm
