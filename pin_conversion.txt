@@ -1,0 +1,36 @@
+Arduino To Raspberry Pi pin conversions
+NC
+RESET
+3V3
+5V
+GND
+GND
+NC
+
+A0
+A1
+A2
+A3
+A4
+A5
+
+D0
+D1
+D2      ->  GPIO28
+D3      ->  GPIO29
+D4      ->  GPIO30
+D5      ->  GPIO31
+D6      ->  GPIO32
+D7      ->  GPIO33
+D8      ->  GPIO34
+D9      ->  GPIO35
+D10     ->  GPIO36
+D11     ->  GPIO10
+D12     ->  GPIO9
+D13     ->  GPIO11
+
+GND
+AREF
+SDA
+SCL
+AREF
