@@ -1,34 +1,40 @@
 # Code has been copied from ServoCds55.h and .cpp to use the exact 
 # same control flow to make the it work with the arduino shield
 
-import spidev as SPI
+#import spidev as SPI
 
 class ServoCds55(object):
-	self.velocity_temp = 0
-	self.upperLimit_temp = 0
-	self.cs = 0
+	velocity_temp = 0
+	upperLimit_temp = 0
+	cs = 0
+	HIGH = 1
+	LOW = 0
 
-	def __init__(CS = 10):
+	def __init__(self, CS = 10):
 		#ServoCds55::ServoCds55 (int CS):cs(CS)
 		#{
 		#   velocity_temp = 150
 		#   upperLimit_temp = 300
 		#}
+		self.velocity_temp = 150
+		self.upperLimit_temp = 300
 		pass
 
-	def begin():
+	def begin(self, ):
 		#pinMode(cs,OUTPUT)	
-		#digitalWrite(cs,HIGH)
+		self.digitalWrite(self.cs, self.HIGH)
 		#SPI.begin ()
 		#SPI.setClockDivider(SPI_CLOCK_DIV8)
 		pass
 
-	def WritePos(int ID,int Pos):
-		#int PosB = (Pos>>8 & 0xff)//low
-		#int PosS = (Pos & 0xff)//high
-		#int velocityB = (velocity_temp>>8 & 0xff)
-		#int velocityS = (velocity_temp & 0xff)
-		#digitalWrite(cs, LOW)    
+	def WritePos(self, ID, Pos):
+		# low
+		PosB = (Pos>>8 & 0xff)
+		# high
+		PosS = (Pos & 0xff)
+		velocityB = (self.velocity_temp>>8 & 0xff)
+		velocityS = (self.velocity_temp & 0xff)
+		self.digitalWrite(self.cs, self.LOW)    
 		self.transferAndWait ('p')
 		self.transferAndWait (ID) 
 		self.transferAndWait (PosB)
@@ -38,33 +44,34 @@ class ServoCds55(object):
 		self.transferAndWait ('\t')
 		self.transferAndWait ('\r')
 		self.transferAndWait ('\n')
-		#digitalWrite(cs, HIGH)
+		self.digitalWrite(self.cs, self.HIGH)
 		#delay(10)
 		pass
 
-	def write(int ID,int Pos):
-		#SetServoLimit(ID,upperLimit_temp)
-		#WritePos(ID,Pos)// default velocity:150 
+	def write(self, ID, Pos):
+		self.SetServoLimit(ID, self.upperLimit_temp)
+		# default velocity:150
+		self.WritePos(ID,Pos) 
 		pass
 
-	def setVelocity(int velocity):
-		#velocity_temp = velocity
+	def setVelocity(self, velocity):
+		self.velocity_temp = velocity
 		pass
 
-	def setPoslimit(int posLimit):
-		#upperLimit_temp =  posLimit
+	def setPoslimit(self, posLimit):
+		self.upperLimit_temp =  posLimit
 		pass
 
-	def rotate(int ID,int velocity):
-		#SetServoLimit(ID,0)
+	def rotate(self, ID, velocity):
+		self.SetServoLimit(ID,0)
 		#delay(100)
-		#SetMotormode(ID,velocity)
+		self.SetMotormode(ID,velocity)
 		pass
 	
-	def SetServoLimit(int ID,int upperLimit):
-		#int upperLimitB = (upperLimit_temp>>8 & 0xff)
-		#int upperLimitS =  (upperLimit_temp & 0xff)
-		#digitalWrite(cs, LOW)
+	def SetServoLimit(self, ID, upperLimit):
+		upperLimitB = (self.upperLimit_temp>>8 & 0xff)
+		upperLimitS =  (self.upperLimit_temp & 0xff)
+		self.digitalWrite(self.cs, self.LOW)
 		self.transferAndWait ('s')
 		self.transferAndWait (ID)
 		self.transferAndWait (upperLimitB)
@@ -72,14 +79,14 @@ class ServoCds55(object):
 		self.transferAndWait ('\t')
 		self.transferAndWait ('\r')
 		self.transferAndWait ('\n')
-		#digitalWrite(cs, HIGH)
+		self.digitalWrite(self.cs, self.HIGH)
 		#delay(10)
 		pass
 
-	def SetMotormode(int ID, int velocity):
-		#int velocityB = (velocity>>8 & 0xff)
-		#int velocityS = (velocity & 0xff)
-		#digitalWrite(cs, LOW)    
+	def SetMotormode(self, ID, velocity):
+		velocityB = (velocity>>8 & 0xff)
+		velocityS = (velocity & 0xff)
+		self.digitalWrite(self.cs, self.LOW)
 		self.transferAndWait ('m')
 		self.transferAndWait (ID)
 		self.transferAndWait (velocityB)
@@ -87,39 +94,41 @@ class ServoCds55(object):
 		self.transferAndWait ('\t')
 		self.transferAndWait ('\r')
 		self.transferAndWait ('\n')
-		#digitalWrite(cs, HIGH)
+		self.digitalWrite(self.cs, self.HIGH)
 		#delay(10)
 		pass
 
-	def SetID(int ID, int newID):
-		#digitalWrite(cs, LOW)    
+	def SetID(self, ID, newID):
+		self.digitalWrite(self.cs, self.LOW)
 		self.transferAndWait ('i')
 		self.transferAndWait (ID)
 		self.transferAndWait (newID)
 		self.transferAndWait ('\t')
 		self.transferAndWait ('\r')
 		self.transferAndWait ('\n')
-		#digitalWrite(cs, HIGH)
+		self.digitalWrite(self.cs, self.HIGH)
 		#delay(10)
 		pass
 
-	def Reset(int ID):
-		#digitalWrite(cs, LOW)    
+	def Reset(self, ID):
+		self.digitalWrite(self.cs, self.LOW)
 		self.transferAndWait ('r')
 		self.transferAndWait (ID)
 		self.transferAndWait ('\t')
 		self.transferAndWait ('\r')
 		self.transferAndWait ('\n')
-		#digitalWrite(cs, HIGH)
+		self.digitalWrite(self.cs, self.HIGH)
 		#delay(10)
 		pass
 
-
-	def self.transferAndWait(what):
+	def transferAndWait(self, what):
 		#byte self.transferAndWait (const byte what)
 		#{
 		#   byte a = SPI.transfer (what)
 		#   delayMicroseconds (20)
 		#   return a
 		#}
+		pass
+	
+	def digitalWrite(self, pin, level):
 		pass
